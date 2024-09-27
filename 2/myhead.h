@@ -1,3 +1,4 @@
+#include <string.h>
 struct Image {
 	int width;
 	int height;
@@ -8,7 +9,7 @@ struct Pixel {
 	int R;
 	int G;
 	int B;
-	int transparency;
+	float transparency;
 };
 struct Filter {
 	char name[1000];
@@ -17,9 +18,11 @@ struct Filter {
 struct Layer {
 	float opacity;
 	bool visible;
+	int number;
 };
 struct Pallete {
-	Pixel[1000];
+	int colors[1000][1000];
+
 };
 struct File {
 	char name[1000];
@@ -34,7 +37,16 @@ struct ColorCorrection {
 struct BlendMode {
 	char type[1000];
 	float opacity;
-	Pixel;
 };
+
+int pixel_size(int width, int height);
+void increase_property(float* property, float points);
+void change_name(char* name[], char new_name[]);
+void change_RGB(int* R, int* G, int* B, int RGB[3]);
+void switch_layer_mode(bool* vision);
+void increase_layer(int* number, int total_numb);
+void decrease_layer(int* number, int total_numb);
+
+
 
 
