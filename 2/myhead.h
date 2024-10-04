@@ -2,7 +2,7 @@
 struct Image {
 	int width;
 	int height;
-	int color_depth;
+	float color_depth;
 	char name[1000];
 };
 struct Pixel {
@@ -12,17 +12,13 @@ struct Pixel {
 	float transparency;
 };
 struct Filter {
-	char name[1000];
+	int type;
 	float intensity;
 };
 struct Layer {
 	float opacity;
 	bool visible;
 	int number;
-};
-struct Pallete {
-	int colors[1000][1000];
-
 };
 struct File {
 	char name[1000];
@@ -32,21 +28,20 @@ struct ColorCorrection {
 	float brightness;
 	float contrast;
 	float saturation;
-	float hue;
 };
 struct BlendMode {
-	char type[1000];
+	int type;
 	float opacity;
 };
 
-int pixel_size(int width, int height);
-void increase_property(float* property, float points);
-void change_name(char* name[], char new_name[]);
-void change_RGB(int* R, int* G, int* B, int RGB[3]);
-void switch_layer_mode(bool* vision);
-void increase_layer(int* number, int total_numb);
-void decrease_layer(int* number, int total_numb);
-
-
-
+void IncreaseProperty(float* property, float points);
+void ChangeRGB(Pixel* object, int RGB[3]);
+void PixelInfoPrint(Pixel* object);
+void PixelSizeInfo(Image* object);
+void PixelSet(Pixel* object);
+void FilterSet(Filter* object);
+void LayerSet(Layer* object);
+void FileSet(File* object);
+void ColorCorrectionSet(ColorCorrection* object);
+void BlendModeSet(BlendMode* object);
 
