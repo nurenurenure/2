@@ -15,6 +15,7 @@ struct Filter {
 	float intensity;
 };
 struct Layer {
+	Image* image;
 	float opacity;
 	bool visible;
 	int number;
@@ -33,16 +34,25 @@ struct BlendMode {
 	float opacity;
 };
 
+struct Palette {
+	Pixel* pixels;
+	int size;
+
+};
+
 void IncreaseProperty(float* property, float points, int code);
 void ChangeRGB(Pixel* object, int RGB[3]);
+
 void PixelSet(Pixel* object);
 void FilterSet(Filter* object);
 void LayerSet(Layer* object);
 void FileSet(File* object);
 void ColorCorrectionSet(ColorCorrection* object);
 void BlendModeSet(BlendMode* object);
+
 void DarkFilterApply(Filter* object, ColorCorrection* object2);
 void LightFilterApply(Filter* object, ColorCorrection* object2);
+
 void PixelInfoPrint(Pixel* object);
 void ImageInfoPrint(Image* object);
 void FilterInfoPrint(Filter* object);
@@ -51,3 +61,5 @@ void FileInfoPrint(File * object);
 
 void LayerIncrease(Layer* object);
 void LayerDecrease(Layer* object);
+
+void CreatePallete(Palette* object, int CurrSize);

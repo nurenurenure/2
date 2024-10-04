@@ -1,8 +1,10 @@
-﻿#include "myhead.h"
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <conio.h>
 #include <iostream>
+#include "myhead.h"
+
+
 void IncreaseProperty(float* property, float points, int code) {
 	if (code == 1) {
 		if (*property + points < 1) *property += points;
@@ -45,7 +47,7 @@ void PixelSet(Pixel* object) {
 	object->R = 0;
 	object->G = 0;
 	object->B = 0;
-	object->transparency = 1;
+	object->transparency = 0;
 };
 
 void FilterSet(Filter* object) {
@@ -98,6 +100,17 @@ void LayerDecrease(Layer* object) {
 	if (object->number > 0)object->number--; 
 };
 
+
+void CreatePallete(Palette* object, int CurrSize) {
+	object->pixels = (Pixel*)malloc(CurrSize * sizeof(Pixel));
+	for (int i = 0; i < CurrSize; i++) {
+		object->pixels[i].R = 0;
+		object->pixels[i].G = 0;
+		object->pixels[i].B = 0;
+		object->pixels[i].transparency = 0;
+	}
+};
+
 int main()
 {
 	Pixel* pixel;
@@ -107,4 +120,7 @@ int main()
 	pixel->B = 15;
 	pixel->transparency = 0.4;
 	PixelInfoPrint(pixel);
+	printf("\n");
+
+
 }
