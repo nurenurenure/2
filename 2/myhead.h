@@ -11,7 +11,7 @@ struct Pixel {
 	float transparency;
 };
 struct Filter {
-	int type;
+	int type;//тип фильтра, где 0 - отсутствие фильтра, 1- темный фильтр, 2- светлый фильтр
 	float intensity;
 };
 struct Layer {
@@ -29,7 +29,7 @@ struct ColorCorrection {
 	float contrast;
 	float saturation;
 };
-struct BlendMode {
+struct BlendMode {//нереализ.
 	int type;
 	float opacity;
 };
@@ -40,8 +40,8 @@ struct Palette {
 
 };
 
-void IncreaseProperty(float* property, float points, int code);
-void ChangeRGB(Pixel* object, int RGB[3]);
+void IncreaseProperty(float property, float points, int code);//увеличение вещественного значения 
+void ChangeRGB(Pixel* object, int RGB[3]);//изменение цвета пикселя
 
 void PixelSet(Pixel* object);
 void FilterSet(Filter* object);
@@ -50,8 +50,8 @@ void FileSet(File* object);
 void ColorCorrectionSet(ColorCorrection* object);
 void BlendModeSet(BlendMode* object);
 
-void DarkFilterApply(Filter* object, ColorCorrection* object2);
-void LightFilterApply(Filter* object, ColorCorrection* object2);
+void DarkFilterApply(Filter* object, ColorCorrection* object2);//применение темного фильтра
+void LightFilterApply(Filter* object, ColorCorrection* object2);//применение светлого фильтра
 
 void PixelInfoPrint(Pixel* object);
 void ImageInfoPrint(Image* object);
@@ -59,7 +59,7 @@ void FilterInfoPrint(Filter* object);
 void LayerInfoPrint(Layer* object);
 void FileInfoPrint(File * object);
 
-void LayerIncrease(Layer* object);
-void LayerDecrease(Layer* object);
+void LayerIncrease(Layer* object);//Перенос текущего слоя вперед
+void LayerDecrease(Layer* object);//Перенос текушего слоя назад
 
-void CreatePallete(Palette* object, int CurrSize);
+void CreatePallete(Palette* object, int CurrSize);//создание новой палитры

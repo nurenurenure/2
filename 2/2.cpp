@@ -5,12 +5,12 @@
 #include "myhead.h"
 
 
-void IncreaseProperty(float* property, float points, int code) {
-	if (code == 1) {
-		if (*property + points < 1) *property += points;
-		else *property = 1;
+void IncreaseProperty(float property, float points, int code) {
+	if (code == 1) {//1 - код свойства, которое не может превышать 1.(Например прозрачность)
+		if (property + points < 1) property += points;
+		else property = 1;
 	}
-	if (code == 0)*property += points;
+	if (code == 0)property += points;
 };
 
 void ChangeRGB(Pixel * object, int RGB[3]) {
@@ -80,9 +80,9 @@ void BlendModeSet(BlendMode* object) {
 
 void DarkFilterApply(Filter* object, ColorCorrection* object2) {
 	if (object->type == 1) {
-		object2->brightness = 0.6 * object->intensity;
-		object2->contrast = 1.2 * object->intensity;
-		object2->saturation = 1.2 * object->intensity;
+		object2->brightness = (0.6 * object->intensity);
+		object2->contrast = (1.2 * object->intensity);
+		object2->saturation = (1.2 * object->intensity);
 	}
 };
 
@@ -113,6 +113,7 @@ void CreatePallete(Palette* object, int CurrSize) {
 
 int main()
 {
+	//пример использования функции вывода информации об отдельном пикселе
 	Pixel* pixel;
 	pixel = (Pixel*)malloc(sizeof(Pixel));
 	pixel->R = 15;
@@ -121,6 +122,26 @@ int main()
 	pixel->transparency = 0.4;
 	PixelInfoPrint(pixel);
 	printf("\n");
-
+	//Изменение цвета пикселя
+	int RGB[3] = { 1, 3, 4 };
+	ChangeRGB(pixel, RGB);
+	PixelInfoPrint(pixel);
+	//Создание нового фильтра и вывод информации
+	Filter* filter;
+	filter = (Filter*)malloc(sizeof(Filter));
+	FilterSet(filter);
+	FilterInfoPrint(filter);
+	//информация об изображении
+	printf("\n");
+	Image* image;
+	image = (Image*)malloc(sizeof(Image));
+	image->width = 4;
+	image->height = 8;
+	strcpy(image->name, "hello");
+	ImageInfoPrint(image);
+	//увеличение отдельного параметра
+	printf("\n");
+	IncreaseProperty(pixel->transparency, 0.4, 1);
+	printf("%f", pixel->transparency);
 
 }
