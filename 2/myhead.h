@@ -41,11 +41,13 @@ void LayerSet(Layer* object);
 void FileSet(File* object);
 void ColorCorrectionSet(ColorCorrection* object);
 void BlendModeSet(BlendMode* object);
-
+void DarkFilterApply(Filter* object, ColorCorrection* object2);
+void LightFilterApply(Filter* object, ColorCorrection* object2);
 void PixelInfoPrint(Pixel* object);
 void ImageInfoPrint(Image* object);
 void FilterInfoPrint(Filter* object);
 void LayerInfoPrint(Layer* object);
 void FileInfoPrint(File * object);
 
-
+void LayerIncrease(Layer* object);
+void LayerDecrease(Layer* object);

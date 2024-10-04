@@ -30,6 +30,7 @@ void FilterInfoPrint(Filter* object) {
 	printf("Intensity:%f\n", object->intensity);
 	if (object->type == 0)printf("Filter type: NONE");
 	if (object->type == 1) printf("Filter type: Dark");
+	if (object->type == 2)printf("Filter type : Light");
 
 };
 
@@ -73,6 +74,28 @@ void ColorCorrectionSet(ColorCorrection* object) {
 void BlendModeSet(BlendMode* object) {
 	object->opacity = 1;
 	object->type = 0;
+};
+
+void DarkFilterApply(Filter* object, ColorCorrection* object2) {
+	if (object->type == 1) {
+		object2->brightness = 0.6 * object->intensity;
+		object2->contrast = 1.2 * object->intensity;
+		object2->saturation = 1.2 * object->intensity;
+	}
+};
+
+void LightFilterApply(Filter* object, ColorCorrection* object2) {
+	if (object->type == 2) {
+		object2->brightness = 1.2 * object->intensity;
+		object2->contrast = 0.6 / object->intensity;
+		object2->saturation = 0.7 / object->intensity;
+	}
+};
+void LayerIncrease(Layer* object) {
+	object->number++;
+};
+void LayerDecrease(Layer* object) { 
+	if (object->number > 0)object->number--; 
 };
 
 int main()
